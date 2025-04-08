@@ -1,8 +1,8 @@
-# Automated Tool Installation with Chocolatey
+# Automated Tool Installation with Chocolatey 🍫
 
 This script automates the installation of various development tools using **Chocolatey** on Windows.
 
-## Installed Tools
+## Installed Tools ⛏️
 
 - Visual Studio Community 2022
 - Python
@@ -36,17 +36,17 @@ This script automates the installation of various development tools using **Choc
 - CutePDF
 - LibreOffice
 
-## How to Use
+## How to Use ⁉️
 
 1. Ensure that **Chocolatey** is installed.
 2. Download or clone this repository.
 3. Run the `install-dev-tools.bat` script as Administrator.
 
-### Prerequisites
+### Prerequisites 
 
 - Chocolatey (can be installed automatically by the script).
 - Internet connection.
 
-## Contributing
+## Contributing 🎉
 
 Feel free to fork the repository, create a branch, make changes, and submit a pull request.
