@@ -1,26 +1,6 @@
 @echo off
 
 REM -----------------
-REM Check and Install Chocolatey
-REM -----------------
-
-REM Check if Chocolatey is installed by verifying the existence of choco.exe in the default installation path
-where choco >nul 2>&1
-if %errorlevel% neq 0 (
-    REM If Chocolatey is not installed, install Chocolatey
-    echo Chocolatey is not installed. Installing Chocolatey...
-    powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
-    
-    REM Wait for Chocolatey to be installed
-    timeout /t 30 /nobreak >nul
-    echo Chocolatey installed successfully. Restarting the script...
-    REM Restart the script
-    call "%~f0"
-    REM Prevent the script from terminating until the call command completes
-    exit /b
-)
-
-REM -----------------
 REM Install Softwares
 REM -----------------
 
