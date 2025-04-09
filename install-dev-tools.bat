@@ -27,7 +27,7 @@ choco install docker-desktop -y
 
 REM Install Google Chrome
 echo Installing Google Chrome...
-choco install googlechrome -y
+choco install googlechrome -y --ignore-checksums
 
 REM Install Visual Studio Code
 echo Installing Visual Studio Code...
@@ -109,4 +109,6 @@ code --install-extension pkief.material-icon-theme
 code --install-extension naumovs.color-highlight
 
 echo "Tools installation completed."
+
+echo "Press any key to exit when you're ready."
 pause
