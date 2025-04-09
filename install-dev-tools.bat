@@ -1,16 +1,9 @@
 @echo off
 
-REM Define the execution policy for the current PowerShell session
-echo Setting PowerShell Execution Policy...
-Set-ExecutionPolicy Bypass -Scope Process -Force
-
-REM Ensure TLS 1.2 is used for secure communication
-echo Enforcing TLS 1.2 protocol...
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
-
-REM Install Chocolatey
+REM Set execution policy to bypass (executar diretamente no PowerShell via CMD)
 echo Installing Chocolatey...
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+REM Execute o PowerShell para instalar o Chocolatey
+powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 
 REM Install Visual Studio Community 2022
 echo Installing Visual Studio Community 2022...
