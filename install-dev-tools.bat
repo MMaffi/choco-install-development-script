@@ -1,8 +1,16 @@
 @echo off
 
-REM Install Chocolatey (if you haven't already)
+REM Define the execution policy for the current PowerShell session
+echo Setting PowerShell Execution Policy...
+Set-ExecutionPolicy Bypass -Scope Process -Force
+
+REM Ensure TLS 1.2 is used for secure communication
+echo Enforcing TLS 1.2 protocol...
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+
+REM Install Chocolatey
 echo Installing Chocolatey...
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 REM Install Visual Studio Community 2022
 echo Installing Visual Studio Community 2022...
@@ -46,7 +54,7 @@ choco install openjdk -y
 
 REM Install Sublime Text
 echo Installing Sublime Text...
-choco install sublimetext -y
+choco install sublimetext3 -y
 
 REM Install VLC (player de mídia)
 echo Installing VLC...
@@ -62,7 +70,7 @@ choco install mysql -y
 
 REM Install MySQL Workbench
 echo Installing MySQL Workbench...
-choco install mysql-workbench -y
+choco install mysql.workbench -y
 
 REM Install WinRAR
 echo Installing WinRAR...
@@ -82,7 +90,7 @@ choco install everything -y
 
 REM Install K-Lite Codec Pack
 echo Installing K-Lite Codec Pack...
-choco install k-lite-codec-pack -y
+choco install k-litecodecpackfull -y
 
 REM Install AnyDesk
 echo Installing AnyDesk...
@@ -94,7 +102,7 @@ choco install cutepdf -y
 
 REM Install LibreOffice
 echo Installing LibreOffice...
-choco install libreoffice-fresh -y
+choco install libreoffice -y
 
 REM Install extensions in VS Code
 echo Installing extensions in Visual Studio Code...
