@@ -1,9 +1,28 @@
 @echo off
 
-REM Set execution policy to bypass (executar diretamente no PowerShell via CMD)
-echo Installing Chocolatey...
-REM Execute o PowerShell para instalar o Chocolatey
-powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+REM -----------------
+REM Check and Install Chocolatey
+REM -----------------
+
+REM Check if Chocolatey is installed
+choco -v >nul 2>&1
+if %errorlevel% neq 0 (
+    REM If Chocolatey is not installed, install Chocolatey
+    echo Chocolatey is not installed. Installing Chocolatey...
+    powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
+    
+    REM Wait for Chocolatey to be installed
+    timeout /t 30 /nobreak >nul
+    echo Chocolatey installed successfully. Restarting the script...
+    REM Restart the script
+    call "%~f0"
+    REM Prevent the script from terminating until the call command completes
+    exit /b
+)
+
+REM -----------------
+REM Install Softwares
+REM -----------------
 
 REM Install Visual Studio Community 2022
 echo Installing Visual Studio Community 2022...
@@ -27,7 +46,7 @@ choco install docker-desktop -y
 
 REM Install Google Chrome
 echo Installing Google Chrome...
-choco install googlechrome -y --ignore-checksums
+choco install googlechrome -y
 
 REM Install Visual Studio Code
 echo Installing Visual Studio Code...
@@ -49,15 +68,15 @@ REM Install Sublime Text
 echo Installing Sublime Text...
 choco install sublimetext3 -y
 
-REM Install VLC (player de mídia)
+REM Install VLC (media player)
 echo Installing VLC...
 choco install vlc -y
 
-REM Install IntelliJ IDEA (IDE para Java e outras linguagens)
+REM Install IntelliJ IDEA (IDE for Java and other languages)
 echo Installing IntelliJ IDEA...
 choco install intellijidea -y
 
-REM Install MySQL Server (serviço)
+REM Install MySQL Server (service)
 echo Installing MySQL Server...
 choco install mysql -y
 
@@ -97,18 +116,31 @@ REM Install LibreOffice
 echo Installing LibreOffice...
 choco install libreoffice -y
 
-REM Install extensions in VS Code
-echo Installing extensions in Visual Studio Code...
-code --install-extension ms-python.python
-code --install-extension eamodio.gitlens
-code --install-extension dbaeumer.vscode-eslint
-code --install-extension esbenp.prettier-vscode
-code --install-extension redhat.vscode-yaml
-code --install-extension dracula-theme.theme-dracula
-code --install-extension pkief.material-icon-theme
-code --install-extension naumovs.color-highlight
+REM -----------------
+REM Install Extensions in Visual Studio Code
+REM -----------------
 
-echo "Tools installation completed."
+REM Check if Visual Studio Code is installed
+where code >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Visual Studio Code is not installed, skipping extensions installation.
+) else (
+    echo Installing extensions in Visual Studio Code...
+    code --install-extension ms-python.python
+    code --install-extension eamodio.gitlens
+    code --install-extension dbaeumer.vscode-eslint
+    code --install-extension esbenp.prettier-vscode
+    code --install-extension redhat.vscode-yaml
+    code --install-extension dracula-theme.theme-dracula
+    code --install-extension pkief.material-icon-theme
+    code --install-extension naumovs.color-highlight
+)
 
-echo "Press any key to exit when you're ready."
+REM -----------------
+REM Final Message
+REM -----------------
+
+echo Tools installation completed.
+
+echo Press any key to exit when you're ready.
 pause
