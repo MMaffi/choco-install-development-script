@@ -4,8 +4,8 @@ REM -----------------
 REM Check and Install Chocolatey
 REM -----------------
 
-REM Check if Chocolatey is installed
-choco -v >nul 2>&1
+REM Check if Chocolatey is installed by verifying the existence of choco.exe in the default installation path
+where choco >nul 2>&1
 if %errorlevel% neq 0 (
     REM If Chocolatey is not installed, install Chocolatey
     echo Chocolatey is not installed. Installing Chocolatey...
