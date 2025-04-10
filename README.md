@@ -40,7 +40,7 @@ This script automates the installation of various development tools using **Choc
 
 1. Download or clone this repository.
 2. Run the file `install-chocolatey.bat` as Administrator to install Chocolatey.
-3. Run the `install-dev-tools.bat` script as Administrator.
+3. Run the `install-dev-tools.bat` script as Administrator to install tools.
 
 ### Prerequisites 
 
