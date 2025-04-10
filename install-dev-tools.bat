@@ -100,21 +100,15 @@ REM -----------------
 REM Install Extensions in Visual Studio Code
 REM -----------------
 
-REM Check if Visual Studio Code is installed
-where code >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Visual Studio Code is not installed, skipping extensions installation.
-) else (
-    echo Installing extensions in Visual Studio Code...
-    code --install-extension ms-python.python
-    code --install-extension eamodio.gitlens
-    code --install-extension dbaeumer.vscode-eslint
-    code --install-extension esbenp.prettier-vscode
-    code --install-extension redhat.vscode-yaml
-    code --install-extension dracula-theme.theme-dracula
-    code --install-extension pkief.material-icon-theme
-    code --install-extension naumovs.color-highlight
-)
+echo Installing extensions in Visual Studio Code...
+code --install-extension ms-python.python
+code --install-extension eamodio.gitlens
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension redhat.vscode-yaml
+code --install-extension dracula-theme.theme-dracula
+code --install-extension pkief.material-icon-theme
+code --install-extension naumovs.color-highlight
 
 REM -----------------
 REM Final Message
@@ -122,5 +116,4 @@ REM -----------------
 
 echo Tools installation completed.
 
-echo Press any key to exit when you're ready.
 pause
